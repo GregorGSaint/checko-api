@@ -1,0 +1,11 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+use CheckoApi\Bootstrap\Services;
+
+require dirname(__DIR__) . '/vendor/autoload.php';
+
+/** @var list<string> $argv */
+exit(Services::fromProjectDir(dirname(__DIR__))->console()->run($argv));

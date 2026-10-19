@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <title>Проверка контрагента</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="preload" href="/fonts/pt-sans-400-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/pt-mono-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/app.css">
+    <script type="module" src="/app.js"></script>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 7.5A1.5 1.5 0 0 1 4.5 6H9l2 2h8.5A1.5 1.5 0 0 1 21 9.5v8a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5z"/><path d="M7 13h10M7 16h6"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></symbol>
+    <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="m11 12 8.5-8.5M16.5 6.5l2 2M14.5 8.5l2 2"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="i-prev" viewBox="0 0 24 24"><path d="M15 18 9 12l6-6"/></symbol>
+    <symbol id="i-next" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3.5 21.5 20h-19z"/><path d="M12 10v4M12 17h.01"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+    <symbol id="i-retry" viewBox="0 0 24 24"><path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M19.5 4v5h-5"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5M12 8h.01"/></symbol>
+</svg>
+
+<header class="shell">
+    <a class="brand" href="#/"><svg class="icon"><use href="#i-folder"/></svg>Проверка контрагента</a>
+    <form class="lookup" id="lookup" role="search" novalidate>
+        <label class="visually-hidden" for="q">ИНН, ОГРН или название</label>
+        <div class="field">
+            <svg class="icon"><use href="#i-search"/></svg>
+            <input id="q" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="ИНН, ОГРН или название" aria-describedby="q-hint">
+        </div>
+        <button class="btn btn-primary" type="submit">Найти</button>
+        <p class="lookup-hint" id="q-hint" aria-live="polite"></p>
+    </form>
+    <button class="icon-btn" type="button" popovertarget="access" aria-label="Токен доступа" title="Токен доступа">
+        <svg class="icon"><use href="#i-key"/></svg>
+    </button>
+</header>
+
+<div class="access" id="access" popover>
+    <form id="access-form">
+        <label class="label" for="token">Токен доступа</label>
+        <input id="token" name="token" autocomplete="off" spellcheck="false">
+        <p id="access-message">Без своего токена работает демо-токен. Постоянный токен выдаёт администратор сервиса.</p>
+        <div class="row">
+            <button class="btn btn-primary" type="submit">Сохранить</button>
+            <button class="btn" type="button" id="token-reset">Вернуть демо-токен</button>
+        </div>
+    </form>
+</div>
+
+<div class="notice" id="notice" role="status" hidden></div>
+
+<main class="page" id="app" tabindex="-1"></main>
+
+<footer class="site-footer">Сведения ЕГРЮЛ, ЕГРИП и бухгалтерской отчётности по данным Checko · <a href="/docs/">Документация API</a></footer>
+</body>
+</html>
